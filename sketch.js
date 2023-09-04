@@ -1,7 +1,7 @@
 cX = 200;
 cY = 200;
 
-sZ = 25;
+sZ = 400;
 
 function Cube(x, y, z, size, cX, cY, sZ)
 {
@@ -55,6 +55,21 @@ function Cube(x, y, z, size, cX, cY, sZ)
     this.connectPoints(this.p8, this.p7);
     this.connectPoints(this.p7, this.p5);
   };
+  this.move = function(x, y, z)
+  {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+
+    this.p1.move(this.x - this.size / 2, this.y - this.size / 2, this.z - this.size / 2);
+    this.p2.move(this.x + this.size / 2, this.y - this.size / 2, this.z - this.size / 2);
+    this.p3.move(this.x - this.size / 2, this.y + this.size / 2, this.z - this.size / 2);
+    this.p4.move(this.x + this.size / 2, this.y + this.size / 2, this.z - this.size / 2);
+    this.p5.move(this.x - this.size / 2, this.y - this.size / 2, this.z + this.size / 2);
+    this.p6.move(this.x + this.size / 2, this.y - this.size / 2, this.z + this.size / 2);
+    this.p7.move(this.x - this.size / 2, this.y + this.size / 2, this.z + this.size / 2);
+    this.p8.move(this.x + this.size / 2, this.y + this.size / 2, this.z + this.size / 2);
+  };
 }
 
 function Point(x, y, z, cX, cY, sZ)
@@ -85,18 +100,28 @@ function Point(x, y, z, cX, cY, sZ)
     push();
     strokeWeight(5);
     point(this.calcX(), this.calcY());
-    this.z = this.z + 1;
-    if (this.z >= 0)
-    {
-      this.z -= 250;
-    }
     pop();
+  };
+
+  this.move = function(x, y, z)
+  {
+    this.x = x;
+    this.y = y;
+    this.z = z;
   };
 }
 
 function setup() {
   createCanvas(400, 400);
-  cube = new Cube(0, 0, 100, 50, cX, cY, sZ);
+  angleMode(DEGREES);
+  cube = new Cube(0, 0, 100, 350, cX, cY, sZ);
+
+  sliderX = createSlider(-1000, 1000, 0);
+  sliderX.position(0, 0);
+  sliderY = createSlider(-1000, 1000, 0);
+  sliderY.position(0, 15);
+  sliderZ = createSlider(sZ + cube.size / 2, 5000, 0);
+  sliderZ.position(0, 30);
 }
 
 
@@ -105,5 +130,5 @@ function draw() {
   background(220);
 
   cube.draw();
-
+  cube.move(sliderX.value(), sliderY.value(), sliderZ.value());
 }
