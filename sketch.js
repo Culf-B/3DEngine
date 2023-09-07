@@ -11,18 +11,22 @@ function Cube(x, y, z, size, cX, cY, sZ)
 
   this.size = size;
 
+  this.scaleX = 1;
+  this.scaleY = 1;
+  this.scaleZ = 1;
+
   this.cX = cX;
   this.cY = cY;
   this.sZ = sZ;
 
-  this.p1 = new Point(this.x - this.size / 2, this.y - this.size / 2, this.z - this.size / 2, cX, cY, sZ);
-  this.p2 = new Point(this.x + this.size / 2, this.y - this.size / 2, this.z - this.size / 2, cX, cY, sZ);
-  this.p3 = new Point(this.x - this.size / 2, this.y + this.size / 2, this.z - this.size / 2, cX, cY, sZ);
-  this.p4 = new Point(this.x + this.size / 2, this.y + this.size / 2, this.z - this.size / 2, cX, cY, sZ);
-  this.p5 = new Point(this.x - this.size / 2, this.y - this.size / 2, this.z + this.size / 2, cX, cY, sZ);
-  this.p6 = new Point(this.x + this.size / 2, this.y - this.size / 2, this.z + this.size / 2, cX, cY, sZ);
-  this.p7 = new Point(this.x - this.size / 2, this.y + this.size / 2, this.z + this.size / 2, cX, cY, sZ);
-  this.p8 = new Point(this.x + this.size / 2, this.y + this.size / 2, this.z + this.size / 2, cX, cY, sZ);
+  this.p1 = new Point(this.x - this.size * this.scaleX / 2, this.y - this.size * this.scaleY / 2, this.z - this.size * this.scaleZ / 2, cX, cY, sZ);
+  this.p2 = new Point(this.x + this.size * this.scaleX / 2, this.y - this.size * this.scaleY / 2, this.z - this.size * this.scaleZ / 2, cX, cY, sZ);
+  this.p3 = new Point(this.x - this.size * this.scaleX / 2, this.y + this.size * this.scaleY / 2, this.z - this.size * this.scaleZ / 2, cX, cY, sZ);
+  this.p4 = new Point(this.x + this.size * this.scaleX / 2, this.y + this.size * this.scaleY / 2, this.z - this.size * this.scaleZ / 2, cX, cY, sZ);
+  this.p5 = new Point(this.x - this.size * this.scaleX / 2, this.y - this.size * this.scaleY / 2, this.z + this.size * this.scaleZ / 2, cX, cY, sZ);
+  this.p6 = new Point(this.x + this.size * this.scaleX / 2, this.y - this.size * this.scaleY / 2, this.z + this.size * this.scaleZ / 2, cX, cY, sZ);
+  this.p7 = new Point(this.x - this.size * this.scaleX / 2, this.y + this.size * this.scaleY / 2, this.z + this.size * this.scaleZ / 2, cX, cY, sZ);
+  this.p8 = new Point(this.x + this.size * this.scaleX / 2, this.y + this.size * this.scaleY / 2, this.z + this.size * this.scaleZ / 2, cX, cY, sZ);
 
   this.connectPoints = function(pA, pB)
   {
@@ -61,14 +65,20 @@ function Cube(x, y, z, size, cX, cY, sZ)
     this.y = y;
     this.z = z;
 
-    this.p1.move(this.x - this.size / 2, this.y - this.size / 2, this.z - this.size / 2);
-    this.p2.move(this.x + this.size / 2, this.y - this.size / 2, this.z - this.size / 2);
-    this.p3.move(this.x - this.size / 2, this.y + this.size / 2, this.z - this.size / 2);
-    this.p4.move(this.x + this.size / 2, this.y + this.size / 2, this.z - this.size / 2);
-    this.p5.move(this.x - this.size / 2, this.y - this.size / 2, this.z + this.size / 2);
-    this.p6.move(this.x + this.size / 2, this.y - this.size / 2, this.z + this.size / 2);
-    this.p7.move(this.x - this.size / 2, this.y + this.size / 2, this.z + this.size / 2);
-    this.p8.move(this.x + this.size / 2, this.y + this.size / 2, this.z + this.size / 2);
+    this.p1.move(this.x - this.size * this.scaleX / 2, this.y - this.size * this.scaleY / 2, this.z - this.size * this.scaleZ / 2);
+    this.p2.move(this.x + this.size * this.scaleX / 2, this.y - this.size * this.scaleY / 2, this.z - this.size * this.scaleZ / 2);
+    this.p3.move(this.x - this.size * this.scaleX / 2, this.y + this.size * this.scaleY / 2, this.z - this.size * this.scaleZ / 2);
+    this.p4.move(this.x + this.size * this.scaleX / 2, this.y + this.size * this.scaleY / 2, this.z - this.size * this.scaleZ / 2);
+    this.p5.move(this.x - this.size * this.scaleX / 2, this.y - this.size * this.scaleY / 2, this.z + this.size * this.scaleZ / 2);
+    this.p6.move(this.x + this.size * this.scaleX / 2, this.y - this.size * this.scaleY / 2, this.z + this.size * this.scaleZ / 2);
+    this.p7.move(this.x - this.size * this.scaleX / 2, this.y + this.size * this.scaleY / 2, this.z + this.size * this.scaleZ / 2);
+    this.p8.move(this.x + this.size * this.scaleX / 2, this.y + this.size * this.scaleY / 2, this.z + this.size * this.scaleZ / 2);
+  };
+  this.scale = function(x, y, z)
+  {
+    this.scaleX = x;
+    this.scaleY = y;
+    this.scaleZ = z;
   };
 }
 
@@ -122,6 +132,13 @@ function setup() {
   sliderY.position(0, 15);
   sliderZ = createSlider(sZ + cube.size / 2, 5000, 0);
   sliderZ.position(0, 30);
+
+  slidersX = createSlider(0, 10, 1, 0.1);
+  slidersX.position(200, 0);
+  slidersY = createSlider(0, 10, 1, 0.1);
+  slidersY.position(200, 15);
+  slidersZ = createSlider(0, 10, 1, 0.1);
+  slidersZ.position(200, 30);
 }
 
 
@@ -131,4 +148,5 @@ function draw() {
 
   cube.draw();
   cube.move(sliderX.value(), sliderY.value(), sliderZ.value());
+  cube.scale(slidersX.value(), slidersY.value(), slidersZ.value());
 }
