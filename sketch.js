@@ -84,6 +84,10 @@ function Cube(x, y, z, size, cX, cY, sZ)
 
 function Point(x, y, z, cX, cY, sZ)
 {
+  this.ini_x = x;
+  this.ini_y = y;
+  this.ini_z = z;
+
   this.x = x;
   this.y = y;
   this.z = z;
@@ -119,6 +123,19 @@ function Point(x, y, z, cX, cY, sZ)
     this.y = y;
     this.z = z;
   };
+
+  this.rotateX = function(angle)
+  {
+    
+  };
+  this.rotateY = function(angle)
+  {
+
+  };
+  this.rotateZ = function(angle)
+  {
+
+  };
 }
 
 function setup() {
@@ -139,6 +156,13 @@ function setup() {
   slidersY.position(200, 15);
   slidersZ = createSlider(0, 10, 1, 0.1);
   slidersZ.position(200, 30);
+
+  sliderRX = createSlider(0, 360, 0, 1);
+  sliderRX.position(0, 55);
+  sliderRY = createSlider(0, 360, 0, 1);
+  sliderRY.position(0, 70);
+  sliderRZ = createSlider(0, 360, 0, 1);
+  sliderRZ.position(0, 85);
 }
 
 
